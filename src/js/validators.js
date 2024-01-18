@@ -1,17 +1,15 @@
-export function isValidInn(value) {
-  return value.length >= 10 && value.length <= 12;
-}
-
 function isValidLuhn(value) {
   let nCheck = 0,
     bEven = false;
   //value = value.replace(/\D/g, "");
 
-  for (var n = value.length - 1; n >= 0; n--) {
-    var cDigit = value.charAt(n),
+  for (let n = value.length - 1; n >= 0; n--) {
+    let cDigit = value.charAt(n),
       nDigit = parseInt(cDigit, 10);
 
-    if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+    if (bEven && (nDigit *= 2) > 9) {
+      nDigit -= 9;
+    }
 
     nCheck += nDigit;
     bEven = !bEven;

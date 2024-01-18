@@ -1,6 +1,6 @@
-import { InnFormWidget } from "./widget";
+import { CardValidationWidget } from "./widget";
 
 const container = document.querySelector(".container");
-const form = new InnFormWidget(container);
+const form = new CardValidationWidget(container);
 
 form.bindToDOM();

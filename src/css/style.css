@@ -1,0 +1,111 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #FFF;
+  font-family: "Arial", "sans-serif";
+  font-size: 15px;
+}
+
+.header {
+  display: block;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  left: 0;
+  top: 45px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.cardvalidation-widget {
+  display: block;
+  background-color: white;
+  padding: 20px;
+}
+
+.pay-systems {
+  padding: 0px 0px 10px;
+  display: flex;
+}
+
+.pay-system {
+  min-width: 50px;
+  min-height: 30px;
+  margin-right: 5px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: lightgray;
+  background-color: azure;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.validation-form {
+  display: flex;
+  min-height: 35px;
+  max-height: 30px;
+}
+
+.input {
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: azure;
+  padding: 8px;
+  min-width: 240px;
+  margin-right: 5px;
+}
+
+.submit {
+  border-width: 0px;
+  border-radius: 5px;
+  background-color: rgb(89, 137, 0);
+  color: white;
+  min-width: 130px;
+}
+
+.visa {
+  background: url('../img/visa.png');
+}
+
+.mastercard {
+  background: url('../img/mastercard.png');
+}
+
+.mir {
+  background: url('../img/mir.png');
+}
+
+.americanexpress {
+  background: url('../img/american-express.png');
+}
+
+.discover {
+  background: url('../img/discover.png');
+}
+
+.jcb {
+  background: url('../img/jcb.png');
+}
+
+.diners {
+  background: url('../img/diners.png');
+}
+
+.footer {
+  display: block;
+  margin-top: 115px;
+  text-align: center;
+}

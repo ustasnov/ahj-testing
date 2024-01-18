@@ -1,6 +1,6 @@
-import { isValidInn } from "./validators";
+import { isValidCardNumber } from "./validators";
 
-export class InnFormWidget {
+export class CardValidationWidget {
   constructor(parentEl) {
     this.parentEl = parentEl;
 
@@ -9,13 +9,23 @@ export class InnFormWidget {
 
   static get markup() {
     return `
-        <form class="innogrn-form-widget">
-            <div class="control">
-                <label for="innogrn-input">Введите ИНН/ОГРН</label>
-                <input type="text" id="innogrn-input" class="input">
-            </div>
-            <button class="submit">Далее</button>
-        </form>
+        <div class="cardvalidation-widget">
+          <div class="pay-systems">
+            <div class="pay-system visa"></div>
+            <div class="pay-system mastercard"></div>
+            <div class="pay-system mir"></div>
+            <div class="pay-system americanexpress"></div>
+            <div class="pay-system discover"></div>
+            <div class="pay-system jcb"></div>
+            <div class="pay-system diners"></div>
+          </div>
+          <form class="validation-form">
+              <div class="control">
+                  <input type="text" id="cardnumber-input" class="input" placeholder="Номер платежной карты">
+              </div>
+              <button class="submit">Проверить</button>
+          </form>
+        </div>
         `;
   }
 
@@ -28,15 +38,17 @@ export class InnFormWidget {
   }
 
   static get selector() {
-    return ".innogrn-form-widget";
+    return ".cardvalidation-widget";
   }
 
   bindToDOM() {
-    this.parentEl.innerHTML = InnFormWidget.markup;
+    this.parentEl.innerHTML = CardValidationWidget.markup;
 
-    this.element = this.parentEl.querySelector(InnFormWidget.selector);
-    this.submit = this.element.querySelector(InnFormWidget.submitSelector);
-    this.input = this.element.querySelector(InnFormWidget.inputSelector);
+    this.element = this.parentEl.querySelector(CardValidationWidget.selector);
+    this.submit = this.element.querySelector(
+      CardValidationWidget.submitSelector
+    );
+    this.input = this.element.querySelector(CardValidationWidget.inputSelector);
 
     this.element.addEventListener("submit", this.onSubmit);
   }
@@ -45,13 +57,7 @@ export class InnFormWidget {
     e.preventDefault();
 
     const value = this.input.value;
-
-    if (isValidInn(value)) {
-      this.input.classList.add("valid");
-      this.input.classList.remove("invalid");
-    } else {
-      this.input.classList.add("invalid");
-      this.input.classList.remove("valid");
-    }
+    const result = isValidCardNumber(value);
+    console.log(`result: ${result.success}`);
   }
 }
