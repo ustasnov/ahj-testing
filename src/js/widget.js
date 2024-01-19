@@ -1,9 +1,10 @@
 import { isValidCardNumber } from "./validators";
 
 export class CardValidationWidget {
-  constructor(parentEl) {
+  constructor(parentEl, callback) {
     this.parentEl = parentEl;
-
+    this.paySystemElements = null;
+    this.callback = callback;
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -49,8 +50,29 @@ export class CardValidationWidget {
       CardValidationWidget.submitSelector
     );
     this.input = this.element.querySelector(CardValidationWidget.inputSelector);
+    this.paySystemElements = Array.from(
+      this.element.querySelectorAll(".pay-system")
+    );
 
     this.element.addEventListener("submit", this.onSubmit);
+  }
+
+  enableCardBadge(paySystem) {
+    const activeBadgeEl = this.parentEl.querySelector("." + paySystem);
+    if (activeBadgeEl) {
+      this.paySystemElements.forEach((el) => {
+        if (!el.classList.contains("disabled")) {
+          el.classList.add("disabled");
+        }
+      });
+      activeBadgeEl.classList.remove("disabled");
+    } else {
+      this.paySystemElements.forEach((el) => {
+        if (el.classList.contains("disabled")) {
+          el.classList.remove("disabled");
+        }
+      });
+    }
   }
 
   onSubmit(e) {
@@ -58,6 +80,7 @@ export class CardValidationWidget {
 
     const value = this.input.value;
     const result = isValidCardNumber(value);
-    console.log(`result: ${result.success}`);
+    this.enableCardBadge(result.paySystem);
+    this.callback(result);
   }
 }

@@ -25,13 +25,13 @@ test("should be invalid card number", () => {
 });
 
 test.each([
-  ["4111111111111111", "Visa"],
-  ["5555555555554444", "MasterCard"],
-  ["371449635398431", "American Express"],
-  ["6011111111111117", "Discover"],
-  ["3530111333300000", "JCB"],
-  ["30569309025904", "Diners Club"],
-  ["2201144495995333", "MIR"],
+  ["4111111111111111", "visa"],
+  ["5555555555554444", "mastercard"],
+  ["371449635398431", "americanexpress"],
+  ["6011111111111117", "discover"],
+  ["3530111333300000", "jcb"],
+  ["30569309025904", "diners"],
+  ["2201144495995333", "mir"],
 ])(
   "%s: cards number must be valid, and from pay system %s",
   (cardNumber, paySystem) => {
@@ -47,13 +47,13 @@ test.each([
 );
 
 test.each([
-  ["411111111117", "Visa"],
-  ["5555555555554", "MasterCard"],
-  ["3714496353981", "American Express"],
-  ["6011111111119", "Discover"],
-  ["3530111333301", "JCB"],
-  ["3056930902597", "Diners Club"],
-  ["2201144495993", "MIR"],
+  ["411111111117", "visa"],
+  ["5555555555554", "mastercard"],
+  ["3714496353981", "americanexpress"],
+  ["6011111111119", "discover"],
+  ["3530111333301", "jcb"],
+  ["3056930902597", "diners"],
+  ["2201144495993", "mir"],
 ])(
   "should %s: cards number has invalid card number length for pay system %s",
   (cardNumber, paySystem) => {

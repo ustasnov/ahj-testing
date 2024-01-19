@@ -18,19 +18,21 @@ function isValidLuhn(value) {
 }
 
 export function isValidCardNumber(cardNumber) {
-  const result = { success: true, errorMessage: "", paySystem: "" };
+  const result = { success: true, errorMessage: "", paySystem: "xxx" };
   const numberLength = cardNumber.length;
+  const notValidLength = "не правильная длина номера карты";
 
   // номер карты должен состоять только из цифр
   if (!/^\d+$/.test(cardNumber)) {
     result.success = false;
-    result.errorMessage = "The card number must consist of digits only";
+    result.errorMessage = "в номере карты должны быть только цифры";
     return result;
   }
+
   // проверяем номер карты по алгоритму Luhn
   if (!isValidLuhn(cardNumber)) {
     result.success = false;
-    result.errorMessage = "Not valid card number";
+    result.errorMessage = "не прошла проверка по алгоритму Luhn";
     return result;
   }
 
@@ -43,10 +45,10 @@ export function isValidCardNumber(cardNumber) {
 
   // Visa
   if (cardNumber[0] === "4") {
-    result.paySystem = "Visa";
+    result.paySystem = "visa";
     if (![13, 16, 19].includes(numberLength)) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
@@ -56,20 +58,20 @@ export function isValidCardNumber(cardNumber) {
     (innRangeStart6 >= 222100 && innRangeStart6 <= 272099) ||
     (innRangeStart2 >= 51 && innRangeStart2 <= 55)
   ) {
-    result.paySystem = "MasterCard";
+    result.paySystem = "mastercard";
     if (numberLength !== 16) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
 
   // American Express
   if ([34, 37].includes(innRangeStart2)) {
-    result.paySystem = "American Express";
+    result.paySystem = "americanexpress";
     if (numberLength !== 15) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
@@ -81,20 +83,20 @@ export function isValidCardNumber(cardNumber) {
     (innRangeStart3 >= 644 && innRangeStart3 <= 649) ||
     (innRangeStart6 >= 622126 && innRangeStart6 <= 622925)
   ) {
-    result.paySystem = "Discover";
+    result.paySystem = "discover";
     if (![16, 19].includes(numberLength)) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
 
   // JCB
   if (innRangeStart4 >= 3528 && innRangeStart4 <= 3589) {
-    result.paySystem = "JCB";
+    result.paySystem = "jcb";
     if (![16, 19].includes(numberLength)) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
@@ -106,25 +108,25 @@ export function isValidCardNumber(cardNumber) {
     innRangeStart2 === 36 ||
     innRangeStart2 === 38
   ) {
-    result.paySystem = "Diners Club";
+    result.paySystem = "diners";
     if (![14, 16].includes(numberLength)) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
 
   // MIR
   if (innRangeStart4 >= 2200 && innRangeStart4 <= 2204) {
-    result.paySystem = "MIR";
+    result.paySystem = "mir";
     if (![16, 19].includes(numberLength)) {
       result.success = false;
-      result.errorMessage = "Invalid card number length";
+      result.errorMessage = notValidLength;
     }
     return result;
   }
 
   result.success = false;
-  result.errorMessage = "Payment system is not defined";
+  result.errorMessage = "не определена платежная система";
   return result;
 }

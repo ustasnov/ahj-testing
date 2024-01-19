@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <div id="main-container">
     <header class="header">
         <div class="header-container">
             <h2 class="header-title">Проверьте номер платежной карты</h2>
@@ -16,10 +17,15 @@
     </header>
     <div class="container"></div>
     <footer class="footer">
-        <div class="result">
-            <h2 class="result-title">Карта прошла проверку.</h2>
+        <div class="result valid hidden">
+            <h3 class="result-title">Карта прошла проверку.</h3>
         </div>
+        <div class="result notvalid hidden">
+          <h3 class="result-title">Карта не прошла проверку:</h3>
+          <h3 class="reason-title"></h3>
+      </div>
     </footer>
+  </div>
 </body>
 
 </html>

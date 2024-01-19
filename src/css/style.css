@@ -6,31 +6,43 @@ body {
 
 body {
   background: #FFF;
-  font-family: "Arial", "sans-serif";
-  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 .header {
-  display: block;
-  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-container {
+  width: 397px;
+  text-align: left;
+}
+
+.header-title {
+  margin: 20px 0px 5px;
 }
 
 .container {
   width: 100%;
-  left: 0;
-  top: 45px;
   display: flex;
-  position: fixed;
-  align-items: center;
-  align-content: center;
   justify-content: center;
-  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardvalidation-widget {
   display: block;
   background-color: white;
   padding: 20px;
+  border-width: 1px;
+  border-radius: 10px;
+  border-style: ridge;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
 .pay-systems {
@@ -58,6 +70,7 @@ body {
 }
 
 .input {
+  font-size: 16px;
   border-style: solid;
   border-color: lightgray;
   border-width: 2px;
@@ -69,11 +82,13 @@ body {
 }
 
 .submit {
+  font-size: 16px;
   border-width: 0px;
   border-radius: 5px;
   background-color: rgb(89, 137, 0);
   color: white;
   min-width: 130px;
+  min-height: 37px;
 }
 
 .visa {
@@ -104,8 +119,40 @@ body {
   background: url('../img/diners.png');
 }
 
+.disabled {
+  background-position: 0 -30px;
+  opacity: 0.3;
+}
+
 .footer {
-  display: block;
-  margin-top: 115px;
-  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.result {
+  width: 398px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.result-title, .reason-title {
+  margin: 5px 0px 0px;
+}
+
+.hidden {
+  display: none;
+}
+
+.valid {
+  color: rgb(89, 137, 0);
+}
+
+.notvalid {
+  color: red;
 }

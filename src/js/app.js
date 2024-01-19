@@ -1,6 +1,4 @@
-import { CardValidationWidget } from "./widget";
+import { Controller } from "./controller";
 
-const container = document.querySelector(".container");
-const form = new CardValidationWidget(container);
-
-form.bindToDOM();
+const controller = new Controller();
+controller.bindToDOM(document.querySelector("#main-container"));
