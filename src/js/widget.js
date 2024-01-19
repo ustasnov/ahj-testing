@@ -6,6 +6,7 @@ export class CardValidationWidget {
     this.paySystemElements = null;
     this.callback = callback;
     this.onSubmit = this.onSubmit.bind(this);
+    this.result = null;
   }
 
   static get markup() {
@@ -79,8 +80,10 @@ export class CardValidationWidget {
     e.preventDefault();
 
     const value = this.input.value;
-    const result = isValidCardNumber(value);
-    this.enableCardBadge(result.paySystem);
-    this.callback(result);
+    this.result = isValidCardNumber(value);
+    this.enableCardBadge(this.result.paySystem);
+    if (this.callback) {
+      this.callback(this.result);
+    }
   }
 }
